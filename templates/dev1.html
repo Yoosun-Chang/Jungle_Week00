@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>나와 닮은 개발자 찾기</title>
+    <link href="{{ url_for('static', filename='logo.png') }}" rel="shortcut icon" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- 도현 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <!-- Custom Css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css') }}">
+
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"
+        integrity="sha384-l+xbElFSnPZ2rOaPrU//2FF5B4LB8FiX5q4fXYTlfcG4PGpMkE1vcL7kNXI6Cci0"
+        crossorigin="anonymous"></script>
+    <script>
+        Kakao.init('c905c170b14d86bec0eeba56ebe519f0');
+        Kakao.isInitialized();
+    </script>
+    <script src="../static/js/share.js" charset="utf-8"></script>
+
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    <script>
+        function logout() {
+            $.removeCookie('token');
+            window.location.href = '/'
+        }
+    </script>
+
+    <style>
+        .content-border {
+            border: 2px solid hsl(153, 53%, 53%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .junglegreen {
+            color: hsl(153, 53%, 53%);
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        #margin {
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="logout();" class="button is-small is-success" style="float: right; margin-top: 5px; margin-right: 10px;">로그아웃</button>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half content-border">
+                    <div class="has-text-centered" id="margin">
+                        <p1>{{user}}님과 닮은 개발자는?</p1>
+                        {% block content %}
+                        <div class="content-container">
+                            <figure id="margin" class="image">
+                                <img class="is-rounded" src="../static/Mark_Zuckerberg.jpg">
+                            </figure>
+                        </div>
+                        <br>
+                        <p1>마크 주커버그</p1>
+                        <br>
+                        <p2>미국의 기업가이자 소프트웨어 엔지니어</p2><br />
+                        메타(Meta) 창업자
+                    </div>
+                    <div id="margin" class="junglegreen">
+                        타인에 대한 배려가 깊고, 사교적인 당신! 타인과의 조화를 추구하는 경향이 있습니다.<br /><br />
+                        이타적으로 생각하며, 타인의 필요를 충족시키는 방법을 모색합니다.<br /><br />
+                        다른 사람과 소통하는 것을 즐기며, 사회적인 네트워크를 형성하는 능력이 뛰어난 편입니다.<br /><br />
+                        기민하게 움직이고, 문제 해결을 위해 기존의 개념을 무너뜨리기도 합니다.<br /><br />
+                        몸을 만드는 것에 관심이 있고, 운동을 즐깁니다.
+
+
+                    </div>
+                    {% endblock %}
+                    <br>
+                    <br>
+                    <div class="buttons">
+                        <button onclick="location.href='/chart' " class="button is-success">정글러 통계보기</button>
+                        {% block share %}
+                        <button class="button is-success" onclick="js:kakaoShare(1)">공유하기</button>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+{% extends "loginpage.html" %}
+{% block head %}
+<script>
+  function register2() {
+    let id = $('#id').val();
+    if (id == "") {
+      alert("아이디를 입력해주세요");
+      return;
+    }
+    let pwd = $('#pwd').val();
+    if (pwd == "") {
+      alert("비밀번호를 입력해주세요");
+      return;
+    }
+    let pwd2 = $('#pwd2').val();
+    if (pwd2 == "") {
+      alert("비밀번호 확인을 입력해주세요");
+      return;
+    }
+    let nickname = $('#nickname').val();
+    if (nickname == "") {
+      alert("닉네임을 입력해주세요");
+      return;
+    }
+    if (pwd != pwd2) {
+      alert("비밀번호와 비밀번호확인이 같지 않습니다");
+      return;
+    }
+    $('#id').val('');
+    $('#pwd').val('');
+    $('#pwd2').val('');
+    $('#nickname').val('');
+
+    $.ajax({
+      type: "POST",
+      url: "/register",
+      data: { id: id, pwd: pwd, nickname: nickname },
+      success: function (response) {
+        if (response['result'] == 'success') {
+          alert('회원가입이 완료되었습니다.');
+          window.location.href = '/'
+        }
+        else if (response['result'] == 'duplicated_id') {
+          alert('중복된 아이디가 존재합니다');
+        }
+        else {
+          alert("회원가입 실패")
+        }
+      }
+    })
+  }
+</script>
+{% endblock %}
+{% block content %}
+<div class="box" id="first">
+  <div class="field">
+    <label class="label" for="id">아이디</label>
+    <div class="control">
+      <input id="id" class="input">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="pwd">비밀번호</label>
+    <div class="control">
+      <input id="pwd" class="input" type="password" placeholder="********">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="pwd2">비밀번호 확인</label>
+    <div class="control">
+      <input id="pwd2" class="input" type="password" placeholder="********">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label" for="nickname">닉네임</label>
+    <div class="control">
+      <input id="nickname" class="input">
+    </div>
+  </div>
+  <button id="register2" onclick="register2();" class="button is-primary">회원가입</button>
+</div>
+{% endblock %}

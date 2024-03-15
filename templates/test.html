@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>나와 닮은 개발자 찾기</title>
+  <link href="{{ url_for('static', filename='logo.png') }}" rel="shortcut icon" type="image/x-icon">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+
+  <!-- 도현 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+  <!-- Custom Css -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css') }}">
+
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<style>
+  #container{
+    padding:10px;
+  }
+</style>
+
+<body>
+  <div id="test-list">
+    <div id="container">
+      <span id = "nickname" style="float:right;">안녕하세요 {{nickname}}님! </span><br/>
+      <button class="button is-small is-success is-rounded" style="float:right;" onclick="logout()">로그아웃</button>
+    </div>
+    <div id="Q1">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q1</h1>
+      <p>정글을 수료하고 나서 </br>나는?</p>
+      <div>
+        <button class="test-box" onclick="check('1a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          내 아이디어로 <br>창업을 할 것이다.
+        </button>
+        <button2 class="test-box" onclick="check('1b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          창업보다는 일단 <br>취업을 할 것이다.
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">1/8</div>
+      <progress class="progress is-success" value="12.5" max="100">12.5%</progress>
+    </div>
+
+    <div id="Q2" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q2 </h1>
+      <p>나는 나만의 새로운</br>언어/시스템을 만드는 것에</p>
+      <div>
+        <button class="test-box" onclick="check('2a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          관심 있다.
+        </button>
+        <button2 class="test-box" onclick="check('2b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          관심 없다.
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">2/8</div>
+      <progress class="progress is-success" value="25" max="100">25%</progress>
+    </div>
+
+    <div id="Q3" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q3 </h1>
+      <p>정글러들에게 주어진 휴식시간!</br>누구와 보낼까?</p>
+      <div>
+        <button class="test-box" onclick="check('3a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          친구, 연인과 함께
+        </button>
+        <button2 class="test-box" onclick="check('3b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          나 혼자 푹 쉰다.
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">3/8</div>
+      <progress class="progress is-success" value="37.5" max="100">37.5%</progress>
+    </div>
+
+    <div id="Q4" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q4 </h1>
+      <p>지금 내 노트북</br>배경화면은?</p>
+      <div>
+        <button class="test-box" onclick="check('4a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          내가 직접 고른 예쁜 배경화면
+        </button>
+        <button2 class="test-box" onclick="check('4b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          기본 배경화면 또는 단색 배경화면
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">4/8</div>
+      <progress class="progress is-success" value="50" max="100">50%</progress>
+    </div>
+
+    <div id="Q5" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q5 </h1>
+      <p>개발자들의 워라벨... <br>어떻게 생각해?</p>
+      <div>
+        <button class="test-box" onclick="check('5a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          할 때는 하고, 쉴 때는 쉬자!
+        </button>
+        <button2 class="test-box" onclick="check('5b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          워라벨은 무슨.. 목표까지 무한몰입
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">5/8</div>
+      <progress class="progress is-success" value="62.5" max="100">62.5%</progress>
+    </div>
+
+    <div id="Q6" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q6 </h1>
+      <p>정글러로서 첫 협업을 해보니까 어때?</p>
+      <div>
+        <button class="test-box" onclick="check('6a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          여럿이서 협업하니까 확실히 빠르다
+        </button>
+        <button2 class="test-box" onclick="check('6b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          혼자였으면 더 편했을 것 같다
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">6/8</div>
+      <progress class="progress is-success" value="75" max="100">75%</progress>
+    </div>
+
+    <div id="Q7" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q7 </h1>
+      <p>정글에서 이론 공부 중 시간이 부족하다.<br />둘 중 하나를 선택해야 한다면?</p>
+      <div>
+        <button class="test-box" onclick="check('7a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          새로운 이론을 계속 배워나가고 싶다.
+        </button>
+        <button2 class="test-box" onclick="check('7b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          내가 배운 이론을 확실히 복습하고 싶다.
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">7/8</div>
+      <progress class="progress is-success" value="87.5" max="100">87.5%</progress>
+    </div>
+
+    <div id="Q8" class="slide-left" style="display:none">
+      <h1 class="display-7" style="color:hsl(153, 53%, 53%)">Q8 </h1>
+      <p>개발자로서 개발 도중<br />
+        새로운 아이디어가 떠올랐다면?</p>
+      <div>
+        <button class="test-box" onclick="check('8a')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          내 아이디어를 세상에 널리 알리고 싶다.
+        </button>
+        <button2 class="test-box" onclick="check('8b')" onmouseover="this.style.color='white';"
+          onMouseout="this.style.color='black';">
+          일단 나를 위해 요긴하게 쓰고 싶다.
+        </button2>
+      </div>
+      <br><br>
+      <div class="page-state">8/8</div>
+      <progress class="progress is-success" value="100" max="100">100%</progress>
+
+    </div>
+  </div>
+
+
+  <!-- 로직 예시 구현해야함 -->
+  <script>
+    let arr = new Array();
+    let typeVal = "";
+
+    function check(val) {
+      let type = val.substr(-1);
+      let num = val.substr(0, val.length - 1);
+      let num2, now_id, next_id, ages;
+
+      if (type == 'a')
+        arr[num - 1] = 'A';
+      else
+        arr[num - 1] = 'B';
+
+      num2 = num * 1 + 1;
+
+      now_id = 'Q' + num;
+      next_id = 'Q' + num2;
+
+      //마지막 문항
+      if (next_id == 'Q9') {
+        $.ajax({
+          type: "POST",
+          url: "/result",
+          data: { 'res': arr },
+          success: function (response) {
+            if (response['result'] == 'success') {
+              var result_num = response['result_num'];
+              window.location.href = '/dev' + result_num;
+            }
+          }
+        })
+      }
+
+      if ($('#' + now_id).css("display") == "block") {
+        $('#' + now_id).hide();
+        $('#' + next_id).show();
+      }
+    }
+
+    function logout() {
+      $.removeCookie('token');
+      window.location.href='/'
+    }
+
+  </script>
+
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+    if (!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "853a7cd974bf68";
+    if (window.wcs) {
+      wcs_do();
+    }
+  </script>
+</body>
